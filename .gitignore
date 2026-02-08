@@ -12,7 +12,6 @@ src/wp-content/backups/
 
 # Env & config
 .env
-.env.*
 src/wp-config.php
 
 # OS / Editor
