@@ -1,9 +1,4 @@
-{
-  # Disable automatic HTTPS in production, as we will handle SSL termination at the load balancer level
-  auto_https off
-}
-
-{$DOMAIN} {
+:80 {
   root * /app/public
   try_files {path} {path}/ /index.php?{query}
 
