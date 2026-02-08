@@ -1,0 +1,27 @@
+services:
+  wordpress:
+    container_name: wp-franken-prod
+    build:
+      context: .
+      dockerfile: docker/prod/Dockerfile
+    ports:
+      - "${HTTP_PORT}:80"
+      - "${HTTPS_PORT}:443"
+    env_file:
+      - .env
+    environment:
+      DOMAIN: "${DOMAIN}"
+      WORDPRESS_DB_HOST: "${DB_HOST}:${DB_PORT}"
+      WORDPRESS_DB_NAME: "${DB_NAME}"
+      WORDPRESS_DB_USER: "${DB_USER}"
+      WORDPRESS_DB_PASSWORD: "${DB_PASSWORD}"
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+      - ./docker/prod/Caddyfile:/etc/frankenphp/Caddyfile:ro
+      - ./docker/prod/php.ini:/usr/local/etc/php/conf.d/99-prod.ini:ro
+    restart: unless-stopped
+
+volumes:
+  caddy_data:
+  caddy_config:
