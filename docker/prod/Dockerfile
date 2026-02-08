@@ -11,9 +11,9 @@ RUN install-php-extensions \
 RUN set -eux; \
     mkdir -p /app/public; \
     if [ "$WP_VERSION" = "latest" ]; then \
-      curl -fsSL https://wordpress.org/latest.tar.gz -o /tmp/wp.tar.gz; \
+        curl -fsSL https://wordpress.org/latest.tar.gz -o /tmp/wp.tar.gz; \
     else \
-      curl -fsSL "https://wordpress.org/wordpress-${WP_VERSION}.tar.gz" -o /tmp/wp.tar.gz; \
+        curl -fsSL "https://wordpress.org/wordpress-${WP_VERSION}.tar.gz" -o /tmp/wp.tar.gz; \
     fi; \
     tar -xzf /tmp/wp.tar.gz -C /tmp; \
     cp -a /tmp/wordpress/. /app/public/; \
