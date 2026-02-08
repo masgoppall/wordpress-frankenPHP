@@ -21,6 +21,8 @@ services:
       - caddy_config:/config
       - ./docker/prod/Caddyfile:/etc/frankenphp/Caddyfile:ro
       - ./docker/prod/php.ini:/usr/local/etc/php/conf.d/99-prod.ini:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     restart: unless-stopped
 
 volumes:
